@@ -1,0 +1,46 @@
+----------------------------------------------------
+  人人环境配置
+----------------------------------------------------
+Redis
+
+tar xzf redis-4.0.9.tar.gz
+sudo mv ./redis-4.0.9 /usr/local/redis/
+cd /usr/local/redis/
+sudo make
+sudo make test
+sudo make install
+
+nohup redis-server &
+
+
+Python3 包
+# 更新steuptools
+sudo pip3 install setuptools --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# sudo apt-get install libssl-dev
+
+# 安装scrapy
+sudo pip3 install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 安装celery
+sudo pip3 install celery -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 安装redis，注意版本不能是3.0
+sudo pip3 install redis==2.10.6 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# sudo apt-get install libffi-dev
+
+sudo pip3 install cryptography -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+sudo pip3 install schedule -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+# redis
+redis-server &
+# celery
+source activate spider
+celery -A tasks worker --loglevel=info
+# 爬虫
+source activate spider
+cd Desktop/ren/rentest1/
+scrapy crawl renphoto001
